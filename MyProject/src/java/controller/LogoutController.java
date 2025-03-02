@@ -12,6 +12,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 /**
  *
@@ -29,10 +30,12 @@ public class LogoutController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        request.getSession().invalidate();
-
-        // Redirect to the login page
-        response.sendRedirect("login.jsp");
+        HttpSession session = request.getSession(false); // Lấy session hiện tại (nếu có)
+        if (session != null) {
+            session.invalidate(); // Hủy session
+        }
+        // Chuyển hướng về trang login
+        response.sendRedirect(request.getContextPath() + "/login");
     } 
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

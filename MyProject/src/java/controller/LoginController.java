@@ -7,6 +7,7 @@ package controller;
 import dal.EmployeeDBContext;
 import dal.UserDBContext;
 import data.Employee;
+import data.Role;
 import data.User;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -14,6 +15,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.ArrayList;
 
 /**
  *
@@ -35,10 +37,19 @@ public class LoginController extends HttpServlet {
            
             HttpSession session = req.getSession();
             session.setAttribute("user", user);
-            resp.sendRedirect("welcome");
+            // Phân chia role (admin hoặc user)
+            ArrayList<Role> rid = user.getRoles(); // Lấy role của user từ DB
+            String role = null;
+        if ("admin".equalsIgnoreCase(role)) {
+            resp.sendRedirect("admin/welcome"); // Trang cho admin
+        } else if ("user".equalsIgnoreCase(role)) {
+            resp.sendRedirect("user/welcome"); // Trang cho user
         } else {
-            resp.getWriter().println("login failed!");
+            resp.getWriter().println("Role not recognized!"); // Trường hợp role không hợp lệ
         }
+    } else {
+        resp.getWriter().println("Login failed!"); // Sai username hoặc password
+    }
     }
 
     @Override

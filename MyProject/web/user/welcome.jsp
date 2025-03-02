@@ -86,7 +86,7 @@
                     </ul>
                 </div>
                 <a href="#">Change Password</a>
-                <a href="logout" style="color: red; text-decoration: none;"><i class="fa fa-sign-out"></i> Sign Out</a>
+                <a href="${pageContext.request.contextPath}/login" style="color: red; text-decoration: none;"><i class="fa fa-sign-out"></i> Sign Out</a>
             </div>
 
             <!-- Main Content -->
