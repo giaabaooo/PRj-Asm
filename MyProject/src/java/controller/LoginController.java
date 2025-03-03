@@ -31,25 +31,39 @@ public class LoginController extends HttpServlet {
         User user = db.get(username, password);
 
         if (user != null) {
-            EmployeeDBContext edb = new EmployeeDBContext();
-            Employee profile = edb.get(user.getE().getId());
-            user.setE(profile);
-           
-            HttpSession session = req.getSession();
-            session.setAttribute("user", user);
-            // Phân chia role (admin hoặc user)
-            ArrayList<Role> rid = user.getRoles(); // Lấy role của user từ DB
-            String role = null;
-        if ("admin".equalsIgnoreCase(role)) {
-            resp.sendRedirect("admin/welcome"); // Trang cho admin
-        } else if ("user".equalsIgnoreCase(role)) {
-            resp.sendRedirect("user/welcome"); // Trang cho user
-        } else {
-            resp.getWriter().println("Role not recognized!"); // Trường hợp role không hợp lệ
+    EmployeeDBContext edb = new EmployeeDBContext();
+    Employee profile = edb.get(user.getE().getId());
+    user.setE(profile);
+    
+    HttpSession session = req.getSession();
+    session.setAttribute("user", user);
+
+    // Lấy danh sách role của user
+    ArrayList<Role> rid = user.getRoles(); // Lấy role của user từ DB
+    String role = null;
+
+    // Duyệt qua danh sách role để xác định role của user
+    for (Role r : rid) {
+        if ("boss".equalsIgnoreCase(r.getName())) {
+            role = "admin"; // Ánh xạ role "boss" thành "admin"
+            break;
+        } else if ("staff".equalsIgnoreCase(r.getName())) {
+            role = "user"; // Ánh xạ role "staff" thành "user"
+            break;
         }
-    } else {
-        resp.getWriter().println("Login failed!"); // Sai username hoặc password
     }
+
+    // Phân chia role
+    if ("admin".equalsIgnoreCase(role)) {
+        resp.sendRedirect("admin/welcome"); // Trang cho admin
+    } else if ("user".equalsIgnoreCase(role)) {
+        resp.sendRedirect("user/welcome"); // Trang cho user
+    } else {
+        resp.getWriter().println("Role not recognized!"); // Trường hợp role không hợp lệ
+    }
+} else {
+    resp.getWriter().println("Login failed!"); // Sai username hoặc password
+}
     }
 
     @Override
