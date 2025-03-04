@@ -44,7 +44,7 @@ public class LoginController extends HttpServlet {
 
     // Duyệt qua danh sách role để xác định role của user
     for (Role r : rid) {
-        if ("boss".equalsIgnoreCase(r.getName())) {
+        if ("team leader".equalsIgnoreCase(r.getName())) {
             role = "admin"; // Ánh xạ role "boss" thành "admin"
             break;
         } else if ("staff".equalsIgnoreCase(r.getName())) {
