@@ -41,7 +41,7 @@ public class History extends BaseRequiredAuthenticationController {
         ArrayList<LeaveRequest> leaves = db.getByDept(id);
         request.setAttribute("leaves", leaves);
         request.setAttribute("depts", deptDB.list());
-        request.getRequestDispatcher("user/history.jsp").forward(request, response);
+        request.getRequestDispatcher("/user/history.jsp").forward(request, response);
         
     } 
 

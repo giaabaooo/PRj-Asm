@@ -10,6 +10,7 @@ import data.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -19,6 +20,7 @@ import java.sql.Date;
  *
  * @author admin
  */
+
 public class CreateLeaveRequest extends BaseRequiredAuthenticationController {
 
     /**
@@ -50,12 +52,12 @@ public class CreateLeaveRequest extends BaseRequiredAuthenticationController {
         req.setAttribute("successMessage", "Your leave request has been submitted successfully!");
 
         // Forward lại trang leaveRequest.jsp với thông báo
-        req.getRequestDispatcher("user/leaveRequest.jsp").forward(req, resp);
+        req.getRequestDispatcher("/user/leaveRequest.jsp").forward(req, resp);
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp, User user) throws ServletException, IOException {
-        req.getRequestDispatcher("user/leaveRequest.jsp").forward(req, resp);
+        req.getRequestDispatcher("/user/leaveRequest.jsp").forward(req, resp);
     }
 
 }
