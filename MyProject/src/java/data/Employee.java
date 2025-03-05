@@ -74,6 +74,12 @@ public class Employee {
     public void setStaffs(ArrayList<Employee> staffs) {
         this.staffs = staffs;
     }
+
+    
+
+   
+
+    
     
     
 }

@@ -122,7 +122,7 @@
                 <!-- Search Form -->
                 <div class="department-info">
                     <label>Department:</label>
-                    <span>${sessionScope.employees.did}</span>
+                    <span>${sessionScope.user.dept.name}</span>
                 </div>
 
                 <!-- Table -->

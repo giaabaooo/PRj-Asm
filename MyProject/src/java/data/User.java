@@ -15,6 +15,19 @@ public class User {
     private String password;
     private String displayname;
     private Employee e;
+    private Department dept;
+
+    public Department getDept() {
+        return dept;
+    }
+
+    public void setDept(Department dept) {
+        this.dept = dept;
+    }
+
+    
+    
+    
 
     public Employee getE() {
         return e;
