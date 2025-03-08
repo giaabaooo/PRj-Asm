@@ -67,6 +67,47 @@ public class LeaveRequestDBContext extends DBContext<LeaveRequest> {
         }
 
     }
+    
+    // Lấy danh sách nghỉ phép của người dùng hiện tại
+    public ArrayList<LeaveRequest> getByEid(String eid) {
+        ArrayList<LeaveRequest> requests = new ArrayList<>();
+        String sql = "SELECT * FROM LeaveRequest WHERE createdby = ?";
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setString(1, eid);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                LeaveRequest r = new LeaveRequest();
+                r.setId(rs.getInt("rid"));
+                r.setTitle(rs.getString("title"));
+                r.setReason(rs.getString("reason"));
+                r.setFrom(rs.getDate("from"));
+                r.setTo(rs.getDate("to"));
+                r.setCreateddate(rs.getTimestamp("createddate"));
+                r.setStatus(rs.getInt("status"));              
+                
+                
+             User u = new User();
+               u.setUsername(rs.getString("username"));
+              u.setDisplayname(rs.getString("displayname"));
+              r.setCreatedby(u);
+
+             Employee e = new Employee();
+               u.setE(e);
+               e.setId(rs.getInt("eid"));
+              e.setName(rs.getString("ename"));
+//
+//                Department d = new Department();
+//                e.setDept(d);
+//                d.setId(rs.getInt("did"));
+//                d.setName(rs.getString("dname"));
+
+                requests.add(r);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return requests;
+    }
 
     public ArrayList<LeaveRequest> getByDept(Integer did) {
         ArrayList<LeaveRequest> requests = new ArrayList<>();

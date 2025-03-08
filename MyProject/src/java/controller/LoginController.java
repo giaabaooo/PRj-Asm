@@ -39,6 +39,7 @@ public class LoginController extends HttpServlet {
     
     HttpSession session = req.getSession();
     session.setAttribute("user", user);
+    
 
     // Lấy danh sách role của user
     ArrayList<Role> rid = user.getRoles(); // Lấy role của user từ DB

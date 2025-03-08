@@ -134,7 +134,7 @@
                             <th>Reason</th>
                             <th>From</th>
                             <th>To</th>
-                            <th>Created By</th>
+<!--                            <th>Created By</th>-->
                             <th>Created Date</th>
                             <th>Status</th>
                         </tr>
@@ -147,7 +147,7 @@
                                 <td><c:out value="${l.reason}" /></td>
                                 <td><c:out value="${l.from}" /></td>
                                 <td><c:out value="${l.to}" /></td>
-                                <td><c:out value="${l.createdby.displayname}" /></td>
+<!--                                <td><c:out value="${l.createdby.displayname}" /></td>-->
                                 <td><c:out value="${l.createddate}" /></td>
                                 <td>
                                     <c:out value="${l.status eq 0 ? 'In Progress' : (l.status eq 1 ? 'Rejected' : 'Accepted')}" />

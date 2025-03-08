@@ -2,11 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-
 package controller;
 
 import dal.DepartmentDBContext;
 import dal.LeaveRequestDBContext;
+import data.Department;
 import data.LeaveRequest;
 import data.User;
 import java.io.IOException;
@@ -22,33 +22,38 @@ import java.util.ArrayList;
  * @author admin
  */
 public class History extends BaseRequiredAuthenticationController {
-   
-    /** 
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
+
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response,User user)
-    throws ServletException, IOException {
-        String did = request.getParameter("did");
-        
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response, User user)
+            throws ServletException, IOException {
+
         LeaveRequestDBContext db = new LeaveRequestDBContext();
         DepartmentDBContext deptDB = new DepartmentDBContext();
-        
-        Integer id = (did==null||did.length()==0||did.equals("-1"))?null:Integer.parseInt(did);
-        ArrayList<LeaveRequest> leaves = db.getByDept(id);
-        request.setAttribute("leaves", leaves);
+
+        // Lấy danh sách lịch sử nghỉ phép của người dùng hiện tại
+        ArrayList<LeaveRequest> requests = db.getByEid(user.getEid()); // Lọc theo ID của user
+
+        // Truy vấn danh sách phòng ban (nếu cần hiển thị danh sách phòng ban cho người dùng)
+        ArrayList<Department> departments = deptDB.list();
+
+        request.setAttribute("requests", requests);
         request.setAttribute("depts", deptDB.list());
         request.getRequestDispatcher("/user/history.jsp").forward(request, response);
-        
-    } 
+
+    }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp, User user) throws ServletException, IOException {
         processRequest(req, resp, user);
-    
+
     }
 
     @Override

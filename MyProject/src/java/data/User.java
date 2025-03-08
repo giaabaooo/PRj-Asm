@@ -14,6 +14,7 @@ public class User {
     private String username;
     private String password;
     private String displayname;
+    private String eid;
     private Employee e;
     private Department dept;
 
@@ -23,6 +24,14 @@ public class User {
 
     public void setDept(Department dept) {
         this.dept = dept;
+    }
+
+    public String getEid() {
+        return eid;
+    }
+
+    public void setEid(String eid) {
+        this.eid = eid;
     }
 
     
