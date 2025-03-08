@@ -23,6 +23,7 @@ public abstract class BaseRequiredAuthenticationController extends HttpServlet {
         return (User) req.getSession().getAttribute("user");
     }
     
+   
     private boolean isAuthorized(HttpServletRequest req, User u)
     {
         String visit_url = req.getServletPath();
@@ -41,7 +42,8 @@ public abstract class BaseRequiredAuthenticationController extends HttpServlet {
         if (user != null && isAuthorized(req, user)) {
             //allow access
             doPost(req, resp, user);
-        } else {
+        
+        }else {
             resp.getWriter().println("access denied!");
         }
     }

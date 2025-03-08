@@ -30,10 +30,9 @@ public class LogoutController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        HttpSession session = request.getSession(false); // Lấy session hiện tại (nếu có)
-        if (session != null) {
-            session.invalidate(); // Hủy session
-        }
+        
+        request.getSession().invalidate();
+       
         // Chuyển hướng về trang login
         response.sendRedirect(request.getContextPath() + "/login");
     } 

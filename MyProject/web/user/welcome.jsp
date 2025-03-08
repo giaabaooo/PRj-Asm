@@ -20,7 +20,7 @@
         <a href="leaveRequest">Leave Request</a>
         <a href="history">History</a>
         <a href="changePassword.jsp">Change Password</a>
-        <a href="logout" style="color: red;">Sign Out</a>
+        <a href="<c:url value='/user/logout'/>" style="color: red;">Sign Out</a>
     </div>
 
     <div class="content">

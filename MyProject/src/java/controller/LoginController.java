@@ -40,6 +40,7 @@ public class LoginController extends HttpServlet {
     HttpSession session = req.getSession();
     session.setAttribute("user", user);
     
+    
 
     // Lấy danh sách role của user
     ArrayList<Role> rid = user.getRoles(); // Lấy role của user từ DB
@@ -58,7 +59,7 @@ public class LoginController extends HttpServlet {
 
     // Phân chia role
     if ("admin".equalsIgnoreCase(role)) {
-        resp.sendRedirect("admin/welcome"); // Trang cho admin
+        resp.sendRedirect("admin/dashboard"); // Trang cho admin
     } else if ("user".equalsIgnoreCase(role)) {
         resp.sendRedirect("user/welcome"); // Trang cho user
     } else {

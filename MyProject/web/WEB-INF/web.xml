@@ -3,7 +3,6 @@
     <welcome-file-list>
         <welcome-file>redirect.jsp</welcome-file>
     </welcome-file-list>
-
     <servlet>
         <servlet-name>LoginController</servlet-name>
         <servlet-class>controller.LoginController</servlet-class>
@@ -38,7 +37,8 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>LogoutController</servlet-name>
-        <url-pattern>/user/logout</url-pattern>
+        <url-pattern>/user/logout</url-pattern>\
+        <url-pattern>/admin/logout</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>HistoryLeaves</servlet-name>
@@ -46,7 +46,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>WelcomeAdmin</servlet-name>
-        <url-pattern>/admin/welcome</url-pattern>
+        <url-pattern>/admin/dashboard</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>CreateLeaveRequest</servlet-name>
