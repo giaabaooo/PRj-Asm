@@ -1,20 +1,12 @@
-<%-- 
-    Document   : welcome
-    Created on : Mar 2, 2025, 7:57:38 PM
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : Mar 8, 2025, 8:25:26 PM
     Author     : admin
---%>
-
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Employee Leave Management System</title>
-        <style>
-            /* Tổng quát */
-            body {
+*/
+body {
                 font-family: Arial, sans-serif;
                 margin: 0;
                 padding: 0;
@@ -141,82 +133,3 @@
                 background-color: #0056b3;
             }
           
-
-        </style>
-    </head>
-    <body>
-        <div class="navbar">
-            <h1>Employee Leave Management System</h1>
-        </div>
-        <div class="sidebar">
-            <h3>Admin</h3>
-            <p class="user-displayname"><strong><c:out value="${sessionScope.user.displayname}" /></strong></p>
-            <p class="user-displayname">
-                <c:out value="${sessionScope.user.dept.name}" />
-            </p>
-            <ul>
-                <li><a href="dashboard">Dashboard</a></li>
-                <li><a href="employee">Employees</a></li>                
-                <li><a href="#">Leave Management</a></li>
-                <li><a href="#">Change Password</a></li>
-                <li><a href="<c:url value='/admin/logout'/>" >Sign Out</a></li>
-            </ul>
-        </div>
-        <div class="content">
-            <div class="dashboard">
-                <div class="card">
-                    <h3>5</h3>
-                    <p>Total Registered Employees</p>
-                </div>
-                <div class="card" style="background-color: #007bff; color: white;">
-                    <h3>9</h3>
-                    <p>Listed Leave</p>
-                </div>
-                <div class="card" style="background-color: #28a745; color: white;">
-                    <h3>3</h3>
-                    <p>Listed Leave Type</p>
-                </div>
-            </div>
-            <h2>Latest Leave Applications</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Employee Name</th>
-                        <th>Leave Type</th>
-                        <th>Posting Date</th>
-                        <th>Status</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Nguyễn Thị Thu Hà (18001122)</td>
-                        <td>Medical Leave Test</td>
-                        <td>2020-08-25 12:45:29</td>
-                        <td style="color: blue;">Waiting for Approval</td>
-                        <td><a href="#" class="btn">View Details</a></td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Nguyễn Thị Thu Hà (18001122)</td>
-                        <td>Restricted Holiday</td>
-                        <td>2020-08-25 12:40:42</td>
-                        <td style="color: blue;">Waiting for Approval</td>
-                        <td><a href="#" class="btn">View Details</a></td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Nguyễn Thị Thu Hà (18001122)</td>
-                        <td>Casual Leave</td>
-                        <td>2020-08-25 11:16:27</td>
-                        <td style="color: red;">Not Approved</td>
-                        <td><a href="#" class="btn">View Details</a></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </body>
-</html>
-

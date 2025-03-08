@@ -17,6 +17,7 @@ public class User {
     private String eid;
     private Employee e;
     private Department dept;
+    private int did;
 
     public Department getDept() {
         return dept;
@@ -32,6 +33,12 @@ public class User {
 
     public void setEid(String eid) {
         this.eid = eid;
+    }
+
+    
+
+    public void setDid(int did) {
+        this.did = did;
     }
 
     
@@ -80,6 +87,10 @@ public class User {
 
     public void setDisplayname(String displayname) {
         this.displayname = displayname;
+    }
+
+    public int getDid() {
+        return did;
     }
     
 }

@@ -93,6 +93,28 @@ public class EmployeeDBContext extends DBContext<Employee> {
                 return null;
     }
     
+    public ArrayList<Employee> getEmployeesByDepartment(int did) {
+        ArrayList<Employee> employees = new ArrayList<>();
+        String sql = "SELECT e.eid, e.ename, d.dname " +
+                     "FROM Employees e " +
+                     "JOIN Departments d ON e.did = d.did " +
+                     "WHERE e.did = ?";
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setInt(1, did); // Gán Department ID
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                Employee e = new Employee();
+                e.setId(rs.getInt("eid"));
+                e.setName(rs.getString("ename"));
+                Department d = new Department();
+                e.setDname(rs.getString("dname")); // Thêm tên phòng ban
+                employees.add(e);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return employees;
+    }
     private Employee getManagerNode(ArrayList<Employee> emps, Employee e)
     {
         for (Employee emp : emps) {
@@ -118,6 +140,10 @@ public class EmployeeDBContext extends DBContext<Employee> {
     public void delete(Employee model) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+
+   
+
+    
 
 }
  

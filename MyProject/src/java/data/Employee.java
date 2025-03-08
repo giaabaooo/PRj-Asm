@@ -18,6 +18,7 @@ public class Employee {
     private Employee manager;
     private ArrayList<Employee> directstaffs = new ArrayList<>();
     private ArrayList<Employee> staffs = new ArrayList<>();
+    private String dname;
 
     public ArrayList<Employee> getDirectstaffs() {
         return directstaffs;
@@ -27,6 +28,13 @@ public class Employee {
         this.directstaffs = directstaffs;
     }
 
+    public String getDname() {
+        return dname;
+    }
+
+    
+    
+    
     public int getId() {
         return id;
     }
@@ -74,6 +82,12 @@ public class Employee {
     public void setStaffs(ArrayList<Employee> staffs) {
         this.staffs = staffs;
     }
+
+    public void setDname(String dname) {
+        this.dname = dname;
+    }
+
+   
 
     
 

@@ -49,6 +49,7 @@ public class UserDBContext extends DBContext<User> {
                 user = new User();
                 user.setUsername(username);
                 user.setDisplayname(rs.getString("displayname"));
+                 user.setDid(rs.getInt("did")); // Gán đúng did
 
                 // Gán thông tin nhân viên
                 Employee e = new Employee();
@@ -91,6 +92,8 @@ public class UserDBContext extends DBContext<User> {
     }
     return null;
 }
+  
+
 
     @Override
     public ArrayList<User> list() {
