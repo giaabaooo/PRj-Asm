@@ -15,6 +15,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.util.ArrayList;
 
 /**
@@ -34,18 +35,20 @@ public class History extends BaseRequiredAuthenticationController {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response, User user)
             throws ServletException, IOException {
-
+        HttpSession session = request.getSession(false);
         LeaveRequestDBContext db = new LeaveRequestDBContext();
-        DepartmentDBContext deptDB = new DepartmentDBContext();
+        
 
         // Lấy danh sách lịch sử nghỉ phép của người dùng hiện tại
-        ArrayList<LeaveRequest> requests = db.getByEid(user.getEid()); // Lọc theo ID của user
+        User currentUser = (User) session.getAttribute("user");
+        String username = currentUser.getUsername(); 
+        ArrayList<LeaveRequest> requests = db.getByUsername(username); // Lọc theo ID của user
 
-        // Truy vấn danh sách phòng ban (nếu cần hiển thị danh sách phòng ban cho người dùng)
-        ArrayList<Department> departments = deptDB.list();
+      
+        
 
         request.setAttribute("requests", requests);
-        request.setAttribute("depts", deptDB.list());
+        
         request.getRequestDispatcher("/user/history.jsp").forward(request, response);
 
     }

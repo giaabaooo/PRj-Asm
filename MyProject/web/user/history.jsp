@@ -140,21 +140,21 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <c:forEach items="${requestScope.leaves}" var="l">
+                        <c:forEach items="${requestScope.requests}" var="r">
                             <tr>
-                                <td><c:out value="${l.id}" /></td>
-                                <td><c:out value="${l.title}" /></td>
-                                <td><c:out value="${l.reason}" /></td>
-                                <td><c:out value="${l.from}" /></td>
-                                <td><c:out value="${l.to}" /></td>
-<!--                                <td><c:out value="${l.createdby.displayname}" /></td>-->
-                                <td><c:out value="${l.createddate}" /></td>
+                                <td><c:out value="${r.id}" /></td>
+                                <td><c:out value="${r.title}" /></td>
+                                <td><c:out value="${r.reason}" /></td>
+                                <td><c:out value="${r.from}" /></td>
+                                <td><c:out value="${r.to}" /></td>
+<!--                                <td><c:out value="${r.createdby.displayname}" /></td>-->
+                                <td><c:out value="${r.createddate}" /></td>
                                 <td>
-                                    <c:out value="${l.status eq 0 ? 'In Progress' : (l.status eq 1 ? 'Rejected' : 'Accepted')}" />
+                                    <c:out value="${r.status eq 0 ? 'In Progress' : (r.status eq 1 ? 'Rejected' : 'Accepted')}" />
                                 </td>
                             </tr>
                         </c:forEach>
-                        <c:if test="${empty requestScope.leaves}">
+                        <c:if test="${empty requestScope.requests}">
                             <tr>
                                 <td colspan="8" style="text-align: center;">No leave requests available.</td>
                             </tr>
