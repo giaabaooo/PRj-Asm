@@ -23,7 +23,7 @@
         <ul>
             <li><a href="dashboard">Dashboard</a></li>
             <li><a href="employee">Employees</a></li>
-            <li><a href="#">Leave Type</a></li>
+            <li><a href="adminRequest">Leave Request</a></li>
             <li><a href="#">Leave Management</a></li>
             <li><a href="#">Change Password</a></li>
             <li><a href="logout">Sign Out</a></li>
