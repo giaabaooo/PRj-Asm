@@ -16,7 +16,7 @@
     <div class="sidebar">
         <h4>EMPLOYEE LEAVE MANAGEMENT SYSTEM</h4>
         <p><strong><c:out value="${sessionScope.user.displayname}" /></strong></p>
-        <a href="welcome">My Profiles</a>
+        <a href="welcome">Welcome</a>
         <a href="leaveRequest">Leave Request</a>
         <a href="history">History</a>
         <a href="changePassword.jsp">Change Password</a>

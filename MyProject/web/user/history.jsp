@@ -140,9 +140,9 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <c:forEach items="${requestScope.requests}" var="r">
+                        <c:forEach items="${requestScope.requests}" var="r" varStatus="status">
                             <tr>
-                                <td><c:out value="${r.id}" /></td>
+                                <td><c:out value="${status.index + 1}" /></td>
                                 <td><c:out value="${r.title}" /></td>
                                 <td><c:out value="${r.reason}" /></td>
                                 <td><c:out value="${r.from}" /></td>

@@ -4,6 +4,10 @@
         <servlet-name>AdminLeaveRequest</servlet-name>
         <servlet-class>controller.admin.AdminLeaveRequest</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Dashboard</servlet-name>
+        <servlet-class>controller.admin.Dashboard</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>EmployeeController</servlet-name>
         <url-pattern>/admin/employee</url-pattern>
@@ -11,6 +15,10 @@
     <servlet-mapping>
         <servlet-name>AdminLeaveRequest</servlet-name>
         <url-pattern>/admin/adminRequest</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Dashboard</servlet-name>
+        <url-pattern>/admin/dashboard</url-pattern>
     </servlet-mapping>
     <welcome-file-list>
         <welcome-file>redirect.jsp</welcome-file>
@@ -33,7 +41,7 @@
     </servlet>
     <servlet>
         <servlet-name>WelcomeAdmin</servlet-name>
-        <servlet-class>controller.WelcomeAdmin</servlet-class>
+        <servlet-class>controller.admin.WelcomeAdmin</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>CreateLeaveRequest</servlet-name>
@@ -62,7 +70,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>WelcomeAdmin</servlet-name>
-        <url-pattern>/admin/dashboard</url-pattern>
+        <url-pattern>/admin/welcomeAdmin</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>CreateLeaveRequest</servlet-name>

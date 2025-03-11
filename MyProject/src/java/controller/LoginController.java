@@ -59,7 +59,7 @@ public class LoginController extends HttpServlet {
 
     // Phân chia role
     if ("admin".equalsIgnoreCase(role)) {
-        resp.sendRedirect("admin/dashboard"); // Trang cho admin
+        resp.sendRedirect("admin/welcomeAdmin"); // Trang cho admin
     } else if ("user".equalsIgnoreCase(role)) {
         resp.sendRedirect("user/welcome"); // Trang cho user
     } else {

@@ -140,7 +140,7 @@
             .btn:hover {
                 background-color: #0056b3;
             }
-          
+
 
         </style>
     </head>
@@ -155,6 +155,7 @@
                 <c:out value="${sessionScope.user.dept.name}" />
             </p>
             <ul>
+                <li><a href="welcomeAdmin">Welcome</a></li>
                 <li><a href="dashboard">Dashboard</a></li>
                 <li><a href="employee">Employees</a></li> 
                 <li><a href="adminRequest">Leave Request</a></li>
@@ -173,10 +174,7 @@
                     <h3>9</h3>
                     <p>Listed Leave</p>
                 </div>
-                <div class="card" style="background-color: #28a745; color: white;">
-                    <h3>3</h3>
-                    <p>Listed Leave Type</p>
-                </div>
+
             </div>
             <h2>Latest Leave Applications</h2>
             <table>
@@ -184,37 +182,34 @@
                     <tr>
                         <th>#</th>
                         <th>Employee Name</th>
-                        <th>Leave Type</th>
+                        <th>Title</th>
                         <th>Posting Date</th>
                         <th>Status</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Nguyễn Thị Thu Hà (18001122)</td>
-                        <td>Medical Leave Test</td>
-                        <td>2020-08-25 12:45:29</td>
-                        <td style="color: blue;">Waiting for Approval</td>
-                        <td><a href="#" class="btn">View Details</a></td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Nguyễn Thị Thu Hà (18001122)</td>
-                        <td>Restricted Holiday</td>
-                        <td>2020-08-25 12:40:42</td>
-                        <td style="color: blue;">Waiting for Approval</td>
-                        <td><a href="#" class="btn">View Details</a></td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Nguyễn Thị Thu Hà (18001122)</td>
-                        <td>Casual Leave</td>
-                        <td>2020-08-25 11:16:27</td>
-                        <td style="color: red;">Not Approved</td>
-                        <td><a href="#" class="btn">View Details</a></td>
-                    </tr>
+                    <c:forEach items="${requests}" var="r" >
+                        <tr>
+                            <td><c:out value="${status.index + 1}"/></td>
+                            <td><c:out value="${r.createdby.displayname}"/></td>
+                            <td><c:out value="${r.title}"/></td>
+                            <td><c:out value="${r.createddate}"/></td>
+                            <td>
+                                <c:choose>
+                                    <c:when test="${r.status == 0}">Waiting for Approval</c:when>
+                                    <c:when test="${r.status == 1}">Not Approved</c:when>
+                                    <c:otherwise>Approved</c:otherwise>
+                                </c:choose>
+                            </td>
+                            <td><a href="details?id=${r.id}" class="btn btn-primary">View Details</a></td>
+                        </tr>
+                    </c:forEach>
+                    <c:if test="${empty requests}">
+                        <tr>
+                            <td colspan="6" style="text-align: center;">No leave requests found.</td>
+                        </tr>
+                    </c:if>
                 </tbody>
             </table>
         </div>
