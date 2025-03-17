@@ -14,7 +14,7 @@
     </head>
     <body>
         <div class="navbar">
-            <h1>Employee Management System</h1>
+            <h1>Employee Leave Management System</h1>
         </div>
         <div class="sidebar">
             <h3>Admin</h3>
@@ -25,7 +25,7 @@
             <li><a href="dashboard">Dashboard</a></li>
             <li><a href="employee">Employees</a></li>
             <li><a href="adminRequest">Leave Request</a></li>
-            <li><a href="#">Leave Management</a></li>
+            <li><a href="adminManagement">Leave Management</a></li>
             <li><a href="#">Change Password</a></li>
             <li><a href="logout">Sign Out</a></li>
         </ul>
