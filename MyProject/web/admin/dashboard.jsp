@@ -189,7 +189,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <c:forEach items="${requests}" var="r" >
+                    <c:forEach items="${requests}" var="r" varStatus="status" >
                         <tr>
                             <td><c:out value="${status.index + 1}"/></td>
                             <td><c:out value="${r.createdby.displayname}"/></td>
