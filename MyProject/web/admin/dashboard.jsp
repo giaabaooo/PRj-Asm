@@ -189,23 +189,23 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <c:forEach items="${requests}" var="r" varStatus="status" >
+                    <c:forEach items="${requestScope.leaves}" var="l" varStatus="status" >
                         <tr>
                             <td><c:out value="${status.index + 1}"/></td>
-                            <td><c:out value="${r.createdby.displayname}"/></td>
-                            <td><c:out value="${r.title}"/></td>
-                            <td><c:out value="${r.createddate}"/></td>
+                            <td><c:out value="${l.createdby.displayname}"/></td>
+                            <td><c:out value="${l.title}"/></td>
+                            <td><c:out value="${l.createddate}"/></td>
                             <td>
                                 <c:choose>
-                                    <c:when test="${r.status == 0}">Waiting for Approval</c:when>
-                                    <c:when test="${r.status == 1}">Not Approved</c:when>
+                                    <c:when test="${l.status == 0}">Waiting for Approval</c:when>
+                                    <c:when test="${l.status == 1}">Not Approved</c:when>
                                     <c:otherwise>Approved</c:otherwise>
                                 </c:choose>
                             </td>
-                            <td><a href="details?id=${r.id}" class="btn btn-primary">View Details</a></td>
+                            <td><a href="details?id=${l.id}" class="btn btn-primary">View Details</a></td>
                         </tr>
                     </c:forEach>
-                    <c:if test="${empty requests}">
+                    <c:if test="${empty leaves}">
                         <tr>
                             <td colspan="6" style="text-align: center;">No leave requests found.</td>
                         </tr>

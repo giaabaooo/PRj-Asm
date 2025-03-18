@@ -6,6 +6,7 @@
 package controller.admin;
 
 import controller.BaseRequiredAuthenticationController;
+import dal.DepartmentDBContext;
 import dal.LeaveRequestDBContext;
 import data.LeaveRequest;
 import data.User;
@@ -31,21 +32,20 @@ public class Dashboard extends BaseRequiredAuthenticationController {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response, User user)
     throws ServletException, IOException {
-         HttpSession session = request.getSession(false);
-        LeaveRequestDBContext db = new LeaveRequestDBContext();
-        
-
-        // Lấy danh sách lịch sử nghỉ phép của người dùng hiện tại
-        User currentUser = (User) session.getAttribute("user");
-        String username = currentUser.getUsername(); 
-        ArrayList<LeaveRequest> requests = db.getByUsername(username); // Lọc theo ID của user
-
-      
-        
-
-        request.setAttribute("requests", requests);
+         String username = user.getUsername();
+    
+    // Khởi tạo các DBContext để truy vấn dữ liệu
+    LeaveRequestDBContext leaveRequestDB = new LeaveRequestDBContext();
+    DepartmentDBContext departmentDB = new DepartmentDBContext();
+    
+    // Truy vấn danh sách các yêu cầu nghỉ phép liên quan đến phòng ban của user hiện tại
+    ArrayList<LeaveRequest> leaves = leaveRequestDB.getByDeptOfUser(username);
+    
+    // Gửi dữ liệu đến JSP
+    request.setAttribute("leaves", leaves);
+    request.setAttribute("depts", departmentDB.list());
         
         request.getRequestDispatcher("/admin/dashboard.jsp").forward(request, response);
     } 
@@ -57,12 +57,12 @@ public class Dashboard extends BaseRequiredAuthenticationController {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp, User user) throws ServletException, IOException {
-         processRequest(req, resp);
+         processRequest(req, resp, user);
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp, User user) throws ServletException, IOException {
-         processRequest(req, resp);
+         processRequest(req, resp, user);
     }
 
 }
