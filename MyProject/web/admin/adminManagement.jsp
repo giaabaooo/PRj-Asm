@@ -13,6 +13,74 @@
         <title>Leave Request</title>
         <link href="../css/adminRequest.css" rel="stylesheet" type="text/css"/>
     </head>
+    <style>
+        .content {
+                margin-left: 250px;
+                width: calc(100% - 250px);
+                padding: 20px;
+                background-color: #f8f9fa;
+                overflow-y: auto;
+            }
+
+            .card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    max-width: 1200px; /* Điều chỉnh chiều ngang tối đa để khớp với bảng */
+    width: 100%; /* Đảm bảo chiếm toàn bộ chiều rộng của container */
+    margin: 20px auto; /* Căn giữa thẻ và tạo khoảng cách bên trên/dưới */
+    border: 2px solid #ddd; /* Thêm viền để đồng bộ với bảng */
+}
+ .container {
+    width: 100%;
+    max-width: 1300px; /* Chiều rộng tối đa */
+    margin: 20px auto; /* Canh giữa bảng */
+    padding: 20px;
+    padding-top: 80px; /* Đẩy bảng xuống để tránh navbar che */
+}
+
+table {
+    width: 100%; /* Chiều rộng bảng */
+    max-width: 1200px; /* Giới hạn chiều rộng tối đa */
+    margin: 0 auto; /* Canh giữa */
+    border-collapse: collapse; /* Gộp các đường viền */
+    font-size: 16px; /* Kích thước chữ */
+    border: 2px solid #ddd; /* Viền bo ngoài bảng */
+    border-radius: 8px; /* Bo góc bảng */
+    overflow: hidden; /* Đảm bảo bo góc không bị lỗi */
+}
+
+th, td {
+    padding: 12px 20px; /* Khoảng đệm giữa nội dung */
+    border: 1px solid #ddd; /* Đường viền ngăn cách giữa các ô */
+    text-align: center; /* Canh giữa nội dung */
+}
+
+th {
+    background-color: #f4f4f4; /* Màu nền tiêu đề */
+    font-weight: bold;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9; /* Màu nền xen kẽ */
+}
+
+tr:hover {
+    background-color: #f1f1f1; /* Hiệu ứng hover */
+}
+
+
+
+caption {
+    font-size: 18px; /* Cỡ chữ lớn hơn một chút cho tiêu đề bảng */
+    font-weight: bold;
+    margin-bottom: 10px; /* Khoảng cách dưới tiêu đề bảng */
+    color: #333; /* Màu chữ đậm */
+    text-align: left; /* Căn lề trái */
+}
+
+    </style>
     <body>
         <div class="navbar">
             <h1>Employee Leave Management System</h1>
@@ -33,7 +101,7 @@
     </div>
     <div class="content">
         <div class="card">
-            <h4>History</h4>
+            <caption><strong>History</strong></caption>
             <!-- Search Form -->
             <div class="department-info">
                 <label>Department:</label>
@@ -70,7 +138,7 @@
                     </td>
                     </tr>
                 </c:forEach>
-                <c:if test="${empty requestScope.requests}">
+                <c:if test="${empty requestScope.leaves}">
                     <tr>
                         <td colspan="8" style="text-align: center;">No leave requests available.</td>
                     </tr>
