@@ -9,7 +9,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Employee List</title>
+        <title>Welcome</title>
         <link href="../css/admin.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>

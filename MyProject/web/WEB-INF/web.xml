@@ -16,6 +16,18 @@
         <servlet-name>AdminManagement</servlet-name>
         <servlet-class>controller.admin.AdminManagement</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ViewDetail</servlet-name>
+        <servlet-class>controller.admin.ViewDetail</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ApproveRejectRequestController</servlet-name>
+        <servlet-class>controller.admin.ApproveRejectRequestController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ApproveRejectRequest</servlet-name>
+        <servlet-class>controller.admin.ApproveRejectRequest</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>EmployeeController</servlet-name>
         <url-pattern>/admin/employee</url-pattern>
@@ -35,6 +47,18 @@
     <servlet-mapping>
         <servlet-name>AdminManagement</servlet-name>
         <url-pattern>/admin/adminManagement</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewDetail</servlet-name>
+        <url-pattern>/admin/viewDetail</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ApproveRejectRequestController</servlet-name>
+        <url-pattern>/execute</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ApproveRejectRequest</servlet-name>
+        <url-pattern>/ApproveRejectRequest</url-pattern>
     </servlet-mapping>
     <welcome-file-list>
         <welcome-file>redirect.jsp</welcome-file>

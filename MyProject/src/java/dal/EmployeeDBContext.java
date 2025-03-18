@@ -125,6 +125,22 @@ public class EmployeeDBContext extends DBContext<Employee> {
         }
         return null;
     }
+    
+    public int getTotalEmployeesByDepartmentId(int did) {
+    int total = 0;
+    String sql = "SELECT COUNT(*) AS total FROM Employees WHERE did = ?";
+    try (PreparedStatement stm = connection.prepareStatement(sql)) {
+        stm.setInt(1, did); // Truyền giá trị `did`
+        ResultSet rs = stm.executeQuery();
+        if (rs.next()) {
+            total = rs.getInt("total"); // Lấy tổng số nhân viên
+        }
+    } catch (SQLException ex) {
+        ex.printStackTrace();
+    }
+    return total;
+}
+
 
     @Override
     public void insert(Employee model) {

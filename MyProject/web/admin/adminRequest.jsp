@@ -33,7 +33,7 @@
     <div class="content">
         <div class="card">
             <h2>Create a Leave Request</h2>
-            <form action="leaveRequest" method="POST" class="leave-request-form">
+            <form action="adminRequest" method="POST" class="leave-request-form">
                 <div class="form-group">
                     <label for="title" class="form-label">Title</label>
                     <input type="text" class="form-control" id="title" name="title" placeholder="Enter the title" required>

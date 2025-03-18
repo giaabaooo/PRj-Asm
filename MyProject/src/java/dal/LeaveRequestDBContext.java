@@ -159,6 +159,71 @@ public class LeaveRequestDBContext extends DBContext<LeaveRequest> {
     }
     return requests;
 }
+    
+    public int getTotalRequestsByDid(int did) {
+    int total = 0;
+    String sql = "SELECT COUNT(*) AS total_requests " +
+                 "FROM LeaveRequest r " +
+                 "INNER JOIN Users u ON r.createdby = u.username " +
+                 "WHERE u.did = ?";
+    try (PreparedStatement stm = connection.prepareStatement(sql)) {
+        stm.setInt(1, did); // Truyền giá trị `did`
+        ResultSet rs = stm.executeQuery();
+        if (rs.next()) {
+            total = rs.getInt("total_requests");
+        }
+    } catch (SQLException ex) {
+        ex.printStackTrace();
+    }
+    return total;
+}
+    
+    public LeaveRequest getRequestById(int rid) {
+    LeaveRequest request = null;
+    String sql = "SELECT r.rid, r.title, r.reason, r.[from], r.[to], r.createddate, r.status, " +
+                 "u.username, u.displayname " +
+                 "FROM LeaveRequest r " +
+                 "INNER JOIN Users u ON r.createdby = u.username " +
+                 "WHERE r.rid = ?";
+    try (PreparedStatement stm = connection.prepareStatement(sql)) {
+        stm.setInt(1, rid);
+        ResultSet rs = stm.executeQuery();
+        if (rs.next()) {
+            request = new LeaveRequest();
+            request.setId(rs.getInt("rid"));
+            request.setTitle(rs.getString("title"));
+            request.setReason(rs.getString("reason"));
+            request.setFrom(rs.getDate("from"));
+            request.setTo(rs.getDate("to"));
+            request.setCreateddate(rs.getTimestamp("createddate"));
+            request.setStatus(rs.getInt("status"));
+
+            User user = new User();
+            user.setUsername(rs.getString("username"));
+            user.setDisplayname(rs.getString("displayname"));
+            request.setCreatedby(user);
+        }
+    } catch (SQLException ex) {
+        ex.printStackTrace();
+    }
+    return request;
+}
+
+    public int updateRequestStatus(int rid, int status) {
+    String sql = "UPDATE LeaveRequest SET status = ? WHERE rid = ?";
+    try (PreparedStatement stm = connection.prepareStatement(sql)) {
+        stm.setInt(1, status);
+        stm.setInt(2, rid);
+        stm.executeUpdate();
+    } catch (SQLException ex) {
+        ex.printStackTrace();
+         
+    }
+        return 0;
+}
+
+    
+
 
 
     @Override

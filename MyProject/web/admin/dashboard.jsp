@@ -11,7 +11,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Employee Leave Management System</title>
+        <title>Dashboard</title>
         <style>
             /* Tổng quát */
             body {
@@ -167,12 +167,12 @@
         <div class="content">
             <div class="dashboard">
                 <div class="card">
-                    <h3>5</h3>
-                    <p>Total Registered Employees</p>
+                    <h3>${totalEmployees}</h3>
+                    <p>Total Employees in <c:out value="${sessionScope.user.dept.name}" /></p>
                 </div>
                 <div class="card" style="background-color: #007bff; color: white;">
-                    <h3>9</h3>
-                    <p>Listed Leave</p>
+                    <h3>${totalRequests}</h3>
+                    <p>Total Requests in <c:out value="${sessionScope.user.dept.name}" /></p>
                 </div>
 
             </div>
@@ -180,7 +180,7 @@
             <table>
                 <thead>
                     <tr>
-                        <th>#</th>
+                        <th>Id</th>
                         <th>Employee Name</th>
                         <th>Title</th>
                         <th>Posting Date</th>
@@ -202,7 +202,7 @@
                                     <c:otherwise>Approved</c:otherwise>
                                 </c:choose>
                             </td>
-                            <td><a href="details?id=${l.id}" class="btn btn-primary">View Details</a></td>
+                            <td><a href="viewDetail?rid=${l.id}" class="btn btn-primary">View Details</a></td>
                         </tr>
                     </c:forEach>
                     <c:if test="${empty leaves}">
