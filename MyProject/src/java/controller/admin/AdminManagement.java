@@ -33,19 +33,23 @@ public class AdminManagement extends BaseRequiredAuthenticationController {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response, User user)
     throws ServletException, IOException {
-          String did = request.getParameter("did");
-        
-        LeaveRequestDBContext db = new LeaveRequestDBContext();
-        DepartmentDBContext deptDB = new DepartmentDBContext();
-        
-        Integer id = (did==null||did.length()==0||did.equals("-1"))?null:Integer.parseInt(did);
-        ArrayList<LeaveRequest> leaves = db.getByDept(id);
-        request.setAttribute("leaves", leaves);
-        request.setAttribute("depts", deptDB.list());
-        request.getRequestDispatcher("/admin/adminManagement.jsp").forward(request, response);
-    } 
+       String username = user.getUsername();
+    
+    // Khởi tạo các DBContext để truy vấn dữ liệu
+    LeaveRequestDBContext leaveRequestDB = new LeaveRequestDBContext();
+    DepartmentDBContext departmentDB = new DepartmentDBContext();
+    
+    // Truy vấn danh sách các yêu cầu nghỉ phép liên quan đến phòng ban của user hiện tại
+    ArrayList<LeaveRequest> leaves = leaveRequestDB.getByDeptOfUser(username);
+    
+    // Gửi dữ liệu đến JSP
+    request.setAttribute("leaves", leaves);
+    request.setAttribute("depts", departmentDB.list());
+    
+    // Forward đến trang admin quản lý
+    request.getRequestDispatcher("/admin/adminManagement.jsp").forward(request, response);
 
-
+    }
   
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp, User user) throws ServletException, IOException {

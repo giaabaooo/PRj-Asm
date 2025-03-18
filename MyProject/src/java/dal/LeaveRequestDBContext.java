@@ -94,67 +94,72 @@ public class LeaveRequestDBContext extends DBContext<LeaveRequest> {
     return requests;
 }
 
-    public ArrayList<LeaveRequest> getByDept(Integer did) {
-        ArrayList<LeaveRequest> requests = new ArrayList<>();
-        try {
-            String sql = "SELECT \n"
-                    + "	r.rid,r.title,r.reason,r.[from],r.[to],u.username,u.displayname,\n"
-                    + "	r.createddate,r.status,\n"
-                    + "	d.did,d.dname,\n"
-                    + "	e.eid,e.ename\n"
-                    + "FROM LeaveRequest r INNER JOIN Users u ON u.username = r.createdby\n"
-                    + "			INNER JOIN Employees e ON e.eid = u.eid\n"
-                    + "			INNER JOIN Departments d ON d.did = e.did";
+    public ArrayList<LeaveRequest> getByDeptOfUser(String username) {
+    ArrayList<LeaveRequest> requests = new ArrayList<>();
+    try {
+        String sql = "SELECT \n"
+                + "    r.rid, r.title, r.reason, r.[from], r.[to], u.username, u.displayname, \n"
+                + "    r.createddate, r.status, \n"
+                + "    d.did, d.dname, \n"
+                + "    e.eid, e.ename \n"
+                + "FROM LeaveRequest r \n"
+                + "INNER JOIN Users u ON u.username = r.createdby \n"
+                + "INNER JOIN Employees e ON e.eid = u.eid \n"
+                + "INNER JOIN Departments d ON d.did = e.did \n"
+                + "WHERE d.did = ( \n"
+                + "    SELECT d.did \n"
+                + "    FROM Users u \n"
+                + "    INNER JOIN Employees e ON u.eid = e.eid \n"
+                + "    INNER JOIN Departments d ON e.did = d.did \n"
+                + "    WHERE u.username = ? \n"
+                + ")";
 
-            if (did != null) {
-                sql += " WHERE d.did = ? ";
-            }
-            PreparedStatement stm = connection.prepareStatement(sql);
-            if (did != null) {
-                stm.setInt(1, did);
-            }
+        PreparedStatement stm = connection.prepareStatement(sql);
+        stm.setString(1, username);
 
-            ResultSet rs = stm.executeQuery();
-            while (rs.next()) {
-                LeaveRequest r = new LeaveRequest();
-                r.setId(rs.getInt("rid"));
-                r.setTitle(rs.getString("title"));
-                r.setReason(rs.getString("reason"));
-                r.setFrom(rs.getDate("from"));
-                r.setTo(rs.getDate("to"));
-                r.setCreateddate(rs.getTimestamp("createddate"));
-                r.setStatus(rs.getInt("status"));
+        ResultSet rs = stm.executeQuery();
+        while (rs.next()) {
+            LeaveRequest r = new LeaveRequest();
+            r.setId(rs.getInt("rid"));
+            r.setTitle(rs.getString("title"));
+            r.setReason(rs.getString("reason"));
+            r.setFrom(rs.getDate("from"));
+            r.setTo(rs.getDate("to"));
+            r.setCreateddate(rs.getTimestamp("createddate"));
+            r.setStatus(rs.getInt("status"));
 
-                User u = new User();
-                u.setUsername(rs.getString("username"));
-                u.setDisplayname(rs.getString("displayname"));
-                r.setCreatedby(u);
+            User u = new User();
+            u.setUsername(rs.getString("username"));
+            u.setDisplayname(rs.getString("displayname"));
+            r.setCreatedby(u);
 
-                Employee e = new Employee();
-                u.setE(e);
-                e.setId(rs.getInt("eid"));
-                e.setName(rs.getString("ename"));
+            Employee e = new Employee();
+            u.setE(e);
+            e.setId(rs.getInt("eid"));
+            e.setName(rs.getString("ename"));
 
-                Department d = new Department();
-                e.setDept(d);
-                d.setId(rs.getInt("did"));
-                d.setName(rs.getString("dname"));
+            Department d = new Department();
+            e.setDept(d);
+            d.setId(rs.getInt("did"));
+            d.setName(rs.getString("dname"));
 
-                requests.add(r);
-            }
+            requests.add(r);
+        }
 
-        } catch (SQLException ex) {
-            Logger.getLogger(LeaveRequestDBContext.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            if (connection != null)
-                try {
+    } catch (SQLException ex) {
+        Logger.getLogger(LeaveRequestDBContext.class.getName()).log(Level.SEVERE, null, ex);
+    } finally {
+        if (connection != null) {
+            try {
                 connection.close();
             } catch (SQLException ex) {
                 Logger.getLogger(LeaveRequestDBContext.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        return requests;
     }
+    return requests;
+}
+
 
     @Override
     public void update(LeaveRequest model) {
