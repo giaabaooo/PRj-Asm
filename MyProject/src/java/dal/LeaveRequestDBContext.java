@@ -221,6 +221,27 @@ public class LeaveRequestDBContext extends DBContext<LeaveRequest> {
         return 0; // Trả về 0 nếu có lỗi
     }
 }
+  
+  public int updateRequest(int rid, String title, String reason, String from, String to) {
+    try {
+        String sql = "UPDATE LeaveRequest SET title = ?, reason = ?, [from] = ?, [to] = ? WHERE rid = ?";
+        PreparedStatement stm = connection.prepareStatement(sql);
+        // Chuyển đổi from và to sang java.sql.Date
+        java.sql.Date fromDate = java.sql.Date.valueOf(from); // Đảm bảo chuỗi đúng định dạng YYYY-MM-DD
+        java.sql.Date toDate = java.sql.Date.valueOf(to);
+
+        stm.setString(1, title);
+        stm.setString(2, reason);
+        stm.setDate(3, fromDate);
+        stm.setDate(4, toDate);
+        stm.setInt(5, rid);
+        stm.executeUpdate();
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+        return 0;
+}
+
 
     
 
@@ -228,7 +249,18 @@ public class LeaveRequestDBContext extends DBContext<LeaveRequest> {
 
     @Override
     public void update(LeaveRequest model) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+//        try {
+//        String sql = "UPDATE LeaveRequest SET title = ?, reason = ?, [from] = ?, [to] = ? WHERE rid = ?";
+//        PreparedStatement stm = connection.prepareStatement(sql);
+//        stm.setString(1, model.getTitle());
+//            stm.setString(2, model.getReason());
+//            stm.setDate(3, model.getFrom());
+//            stm.setDate(4, model.getTo());
+//        stm.setInt(5, rid);
+//        stm.executeUpdate();
+//    } catch (SQLException e) {
+//        e.printStackTrace();
+//    }
     }
 
     @Override

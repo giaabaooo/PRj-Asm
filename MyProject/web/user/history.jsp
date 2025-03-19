@@ -1,14 +1,15 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page contentType="text/html" pageEncoding="UTF-8" %>
+<%@page contentType="text/html; charset=UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Leave Management</title>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
         <style>
             body {
                 background-color: #f5f5f5;
-                font-family: Arial, sans-serif;
+                font-family: Roboto, sans-serif;
                 margin: 0;
                 padding: 0;
                 display: flex;
@@ -134,9 +135,10 @@
                             <th>Reason</th>
                             <th>From</th>
                             <th>To</th>
-<!--                            <th>Created By</th>-->
+                            <!--                            <th>Created By</th>-->
                             <th>Created Date</th>
                             <th>Status</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -152,6 +154,10 @@
                                 <td>
                                     <c:out value="${r.status eq 0 ? 'In Progress' : (r.status eq 1 ? 'Rejected' : 'Accepted')}" />
                                 </td>
+                                <td>
+                                    <a href="updateRequest?rid=${r.id}" class="btn btn-warning">Update</a>
+                                </td> <!-- Thêm nút Update -->
+                            </tr>
                             </tr>
                         </c:forEach>
                         <c:if test="${empty requestScope.requests}">
