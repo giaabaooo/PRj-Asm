@@ -209,17 +209,17 @@ public class LeaveRequestDBContext extends DBContext<LeaveRequest> {
     return request;
 }
 
-    public int updateRequestStatus(int rid, int status) {
-    String sql = "UPDATE LeaveRequest SET status = ? WHERE rid = ?";
-    try (PreparedStatement stm = connection.prepareStatement(sql)) {
-        stm.setInt(1, status);
-        stm.setInt(2, rid);
-        stm.executeUpdate();
-    } catch (SQLException ex) {
-        ex.printStackTrace();
-         
+  public int updateRequestStatus(int rid, int status) {
+    try {
+        String sql = "UPDATE LeaveRequest SET status = ? WHERE rid = ?";
+        PreparedStatement stm = connection.prepareStatement(sql);
+        stm.setInt(1, status); // Trạng thái (2 = Approved, 1 = Rejected)
+        stm.setInt(2, rid);    // ID của yêu cầu
+        return stm.executeUpdate(); // Trả về số hàng bị ảnh hưởng
+    } catch (SQLException e) {
+        e.printStackTrace();
+        return 0; // Trả về 0 nếu có lỗi
     }
-        return 0;
 }
 
     

@@ -11,7 +11,26 @@
     <head>
         <title>Detail</title>
         <link href="../css/adminRequest.css" rel="stylesheet" type="text/css"/>
+        <style>
+            .content {
+    margin-left: 250px; /* Dành không gian cho sidebar */
+    width: calc(100% - 250px);
+    display: flex;
+    flex-direction: column; /* Sắp xếp theo chiều dọc */
+    justify-content: flex-start; /* Đẩy nội dung lên trên */
+    align-items: center; /* Căn giữa theo chiều ngang */
+    height: 100vh; /* Chiều cao nội dung đầy màn hình */
+    background-color: #f8f9fa;
+    padding-top: 20px; /* Thêm khoảng cách phía trên */
+}
 
+.content h2 {
+    margin-bottom: 20px; /* Thêm khoảng cách dưới tiêu đề */
+    font-size: 24px; /* Kích thước chữ của tiêu đề */
+    text-align: center; /* Căn giữa chữ */
+    color: #343a40; /* Màu chữ tiêu đề */
+}
+        </style>
 
     </head>
     <body>
@@ -49,7 +68,7 @@
                         <c:otherwise>Accepted</c:otherwise>
                     </c:choose>
                 </p>
-                <form action="/admin/ApproveRejectRequest" method="POST">
+                <form action="viewDetail" method="POST">
                     <input type="hidden" name="rid" value="${requestDetail.id}">
                     <button type="submit" name="status" value="2" class="btn btn-success">Accept</button>
                     <button type="submit" name="status" value="1" class="btn btn-danger">Reject</button>

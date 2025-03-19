@@ -197,12 +197,21 @@
                             <td><c:out value="${l.createddate}"/></td>
                             <td>
                                 <c:choose>
-                                    <c:when test="${l.status == 0}">Waiting for Approval</c:when>
-                                    <c:when test="${l.status == 1}">Not Approved</c:when>
-                                    <c:otherwise>Approved</c:otherwise>
+                                    <c:when test="${l.status == 0}">
+                                        Waiting for Approval
+                                    </c:when>
+                                    <c:when test="${l.status == 1}">
+                                        Not Approved
+                                    </c:when>
+                                    <c:when test="${l.status == 2}">
+                                        Approved
+                                    </c:when>
+                                    <c:otherwise>
+                                        Unknown Status
+                                    </c:otherwise>
                                 </c:choose>
                             </td>
-                            <td><a href="viewDetail?rid=${l.id}" class="btn btn-primary">View Details</a></td>
+                            <td><a href="/MyProject/admin/viewDetail?action=viewDetail&rid=${l.id}" class="btn btn-primary">View Details</a></td>
                         </tr>
                     </c:forEach>
                     <c:if test="${empty leaves}">
