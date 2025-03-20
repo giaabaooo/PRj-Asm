@@ -144,7 +144,7 @@ public class EmployeeDBContext extends DBContext<Employee> {
     }
     public ArrayList<Employee> getAllEmployees() {
     ArrayList<Employee> employees = new ArrayList<>();
-    String sql = "SELECT e.eid AS EmployeeId, e.ename AS EmployeeName, d.dname AS DepartmentName " +
+    String sql = "SELECT e.eid , e.ename , d.dname  " +
                  "FROM Employees e " +
                  "LEFT JOIN Departments d ON e.did = d.did";
 
