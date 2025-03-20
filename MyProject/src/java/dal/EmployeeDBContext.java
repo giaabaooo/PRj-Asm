@@ -120,28 +120,34 @@ public class EmployeeDBContext extends DBContext<Employee> {
     }
     return total;
 }
-    public ArrayList<Employee> getEmployeesByDepartment(int did) {
-        ArrayList<Employee> employees = new ArrayList<>();
-        String sql = "SELECT e.eid, e.ename, d.dname " +
-                     "FROM Employees e " +
-                     "JOIN Departments d ON e.did = d.did " +
-                     "WHERE e.did = ?";
-        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
-            stmt.setInt(1, did); // Gán Department ID
-            ResultSet rs = stmt.executeQuery();
-            while (rs.next()) {
-                Employee e = new Employee();
-                e.setId(rs.getInt("eid"));
-                e.setName(rs.getString("ename"));
-                Department d = new Department();
-                e.setDname(rs.getString("dname")); // Thêm tên phòng ban
-                employees.add(e);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+   public ArrayList<Employee> getEmployeesByDepartmentName(String dname) {
+    ArrayList<Employee> employees = new ArrayList<>();
+    String sql = "SELECT e.eid , e.ename , d.dname  " +
+                 "FROM Employees e " +
+                 "JOIN Departments d ON e.did = d.did " +
+                 "WHERE d.dname = ?";
+
+    try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+        stmt.setString(1, dname); // Gán giá trị của dname
+        ResultSet rs = stmt.executeQuery();
+        
+        while (rs.next()) {
+            Employee e = new Employee();
+            e.setId(rs.getInt("eid"));
+            e.setName(rs.getString("ename"));
+
+            Department d = new Department();
+            d.setName(rs.getString("dname"));
+
+            e.setDept(d); // Gán phòng ban cho nhân viên
+            employees.add(e);
         }
-        return employees;
+    } catch (SQLException e) {
+        e.printStackTrace();
     }
+    return employees;
+}
+
     public ArrayList<Employee> getAllEmployees() {
     ArrayList<Employee> employees = new ArrayList<>();
     String sql = "SELECT e.eid , e.ename , d.dname  " +
@@ -164,6 +170,28 @@ public class EmployeeDBContext extends DBContext<Employee> {
     }
     return employees;
 }
+     public ArrayList<Employee> getEmployeesByDepartment(int did) {
+        ArrayList<Employee> employees = new ArrayList<>();
+        String sql = "SELECT e.eid, e.ename, d.dname " +
+                     "FROM Employees e " +
+                     "JOIN Departments d ON e.did = d.did " +
+                     "WHERE e.did = ?";
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setInt(1, did); // Gán Department ID
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                Employee e = new Employee();
+                e.setId(rs.getInt("eid"));
+                e.setName(rs.getString("ename"));
+                Department d = new Department();
+                e.setDname(rs.getString("dname")); // Thêm tên phòng ban
+                employees.add(e);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return employees;
+    }
     
     
 

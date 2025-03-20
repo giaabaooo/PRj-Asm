@@ -44,6 +44,10 @@
         <servlet-name>HistoryRequest</servlet-name>
         <servlet-class>controller.boss.HistoryRequest</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>View</servlet-name>
+        <servlet-class>controller.boss.View</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>EmployeeController</servlet-name>
         <url-pattern>/admin/employee</url-pattern>
@@ -91,6 +95,10 @@
     <servlet-mapping>
         <servlet-name>HistoryRequest</servlet-name>
         <url-pattern>/boss/historyRequest</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>View</servlet-name>
+        <url-pattern>/boss/view</url-pattern>
     </servlet-mapping>
     <welcome-file-list>
         <welcome-file>redirect.jsp</welcome-file>

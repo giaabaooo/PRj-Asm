@@ -90,7 +90,7 @@
             <p class="user-displayname"><strong><c:out value="${sessionScope.user.displayname}" /></strong></p>
             <p class="user-displayname"> <c:out value="${sessionScope.user.dept.name}" /></p>
             <ul>
-                <li><a href="welcomeAdmin">Welcome</a></li>
+                <li><a href="welcomeBoss">Welcome</a></li>
                 <li><a href="dashboard">Dashboard</a></li>
                 <li><a href="employee">Employees</a></li>               
                 <li><a href="historyRequest">Leave Management</a></li>
@@ -127,6 +127,7 @@
                             <th>Created By</th>
                             <th>Created Date</th>
                             <th>Status</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -143,6 +144,7 @@
                                 <td>
                                     <c:out value="${l.status eq 0 ? 'In Progress' : (r.status eq 1 ? 'Rejected' : 'Accepted')}" />
                                 </td>
+                                <td><a href="/MyProject/boss/view?action=view&rid=${l.id}" class="btn btn-primary">View</a></td>
                             </tr>
                         </c:forEach>
                         <c:if test="${empty requestScope.leaves}">

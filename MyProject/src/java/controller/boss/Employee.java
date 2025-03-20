@@ -35,12 +35,39 @@ public class Employee extends BaseRequiredAuthenticationController {
      */
     protected void processRequest(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        EmployeeDBContext employeeDB = new EmployeeDBContext();
-        ArrayList<data.Employee> employees = employeeDB.getAllEmployees(); // Lấy toàn bộ nhân viên
-        req.setAttribute("employees", employees);
+//        EmployeeDBContext employeeDB = new EmployeeDBContext();
+//        ArrayList<data.Employee> employees = employeeDB.getAllEmployees(); // Lấy toàn bộ nhân viên
+//        req.setAttribute("employees", employees);
+//
+//// Chuyển tiếp đến JSP
+//        req.getRequestDispatcher("/boss/employee.jsp").forward(req, resp);
+        try {
+            // Lấy tham số departmentName từ request
+            String dname = req.getParameter("dname");
 
-// Chuyển tiếp đến JSP
-        req.getRequestDispatcher("/boss/employee.jsp").forward(req, resp);
+            EmployeeDBContext employeeDB = new EmployeeDBContext();
+            DepartmentDBContext deptDB = new DepartmentDBContext();
+            ArrayList<data.Employee> employees;
+
+            if (dname != null && !dname.trim().isEmpty()) {
+                // Lấy danh sách nhân viên theo tên phòng ban
+                employees = employeeDB.getEmployeesByDepartmentName(dname);
+
+            } else {
+                // Lấy toàn bộ nhân viên nếu không có phòng ban cụ thể
+                employees = employeeDB.getAllEmployees();
+            }
+//            req.setAttribute("depts", deptDB.list());
+            req.setAttribute("employees", employees);
+
+            // Chuyển tiếp đến JSP
+            req.getRequestDispatcher("/boss/employee.jsp").forward(req, resp);
+        } catch (Exception e) {
+            // Xử lý lỗi nếu xảy ra
+            e.printStackTrace();
+            req.setAttribute("error", "Unable to load employee data.");
+            req.getRequestDispatcher("/error.jsp").forward(req, resp);
+        }
 
     }
 

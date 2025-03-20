@@ -21,7 +21,7 @@
             <p class="user-displayname"><strong><c:out value="${sessionScope.user.displayname}" /></strong></p>
             <p class="user-displayname"><c:out value="${sessionScope.user.dept.name}" /></p>
         <ul>
-            <li><a href="welcomeAdmin">Welcome</a></li>
+            <li><a href="welcomeBoss">Welcome</a></li>
             <li><a href="dashboard">Dashboard</a></li>
             <li><a href="employee">Employees</a></li>          
             <li><a href="historyRequest">Leave Management</a></li>

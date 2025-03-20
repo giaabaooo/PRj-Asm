@@ -21,7 +21,7 @@
         <p class="user-displayname"><strong><c:out value="${sessionScope.user.displayname}" /></strong></p>
         <p class="user-displayname"><c:out value="${sessionScope.user.dept.name}" /></p>
         <ul>
-            <li><a href="welcomeAdmin">Welcome</a></li>
+            <li><a href="welcomeBoss">Welcome</a></li>
             <li><a href="dashboard">Dashboard</a></li>
             <li><a href="employee">Employees</a></li>           
             <li><a href="historyRequest">Leave Management</a></li>
@@ -30,18 +30,18 @@
         </ul>
     </div>
     <div class="content">
-        <form id="search" action="employees" method="GET">
-            <select name="did" onchange="document.getElementById('search').submit();">
+<!--        <form id="search" method="get" action="employee">
+            <select name="dname" onchange="document.getElementById('search').submit();">
                 <option value="-1">---All Department---</option>
                 <c:forEach items="${requestScope.depts}" var="d">
-                    <option
-                        <c:if test="${d.id eq param.did}">
+                    <option value="${d.name}"
+                        <c:if test="${d.name eq param.dname}">
                             selected="selected"
                         </c:if>
-                        value="${d.id}">${d.name}</option>
+                        value="${d.dname}">${d.dname}</option>
                 </c:forEach>
             </select>
-        </form>
+        </form>-->
         <table border="1" cellpadding="10" cellspacing="0">
             <thead>
                 <tr>
