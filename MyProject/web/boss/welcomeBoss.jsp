@@ -17,7 +17,7 @@
             <h1>Employee Leave Management System</h1>
         </div>
         <div class="sidebar">
-            <h3>Leader</h3>
+            <h3>Boss</h3>
             <p class="user-displayname"><strong><c:out value="${sessionScope.user.displayname}" /></strong></p>
             <p class="user-displayname"><c:out value="${sessionScope.user.dept.name}" /></p>
         <ul>

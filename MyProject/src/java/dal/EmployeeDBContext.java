@@ -8,6 +8,7 @@ import data.Department;
 import data.Employee;
 import java.util.ArrayList;
 import java.sql.*;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -93,28 +94,7 @@ public class EmployeeDBContext extends DBContext<Employee> {
                 return null;
     }
     
-    public ArrayList<Employee> getEmployeesByDepartment(int did) {
-        ArrayList<Employee> employees = new ArrayList<>();
-        String sql = "SELECT e.eid, e.ename, d.dname " +
-                     "FROM Employees e " +
-                     "JOIN Departments d ON e.did = d.did " +
-                     "WHERE e.did = ?";
-        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
-            stmt.setInt(1, did); // Gán Department ID
-            ResultSet rs = stmt.executeQuery();
-            while (rs.next()) {
-                Employee e = new Employee();
-                e.setId(rs.getInt("eid"));
-                e.setName(rs.getString("ename"));
-                Department d = new Department();
-                e.setDname(rs.getString("dname")); // Thêm tên phòng ban
-                employees.add(e);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return employees;
-    }
+    
     private Employee getManagerNode(ArrayList<Employee> emps, Employee e)
     {
         for (Employee emp : emps) {
@@ -140,6 +120,53 @@ public class EmployeeDBContext extends DBContext<Employee> {
     }
     return total;
 }
+    public ArrayList<Employee> getEmployeesByDepartment(int did) {
+        ArrayList<Employee> employees = new ArrayList<>();
+        String sql = "SELECT e.eid, e.ename, d.dname " +
+                     "FROM Employees e " +
+                     "JOIN Departments d ON e.did = d.did " +
+                     "WHERE e.did = ?";
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setInt(1, did); // Gán Department ID
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                Employee e = new Employee();
+                e.setId(rs.getInt("eid"));
+                e.setName(rs.getString("ename"));
+                Department d = new Department();
+                e.setDname(rs.getString("dname")); // Thêm tên phòng ban
+                employees.add(e);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return employees;
+    }
+    public ArrayList<Employee> getAllEmployees() {
+    ArrayList<Employee> employees = new ArrayList<>();
+    String sql = "SELECT e.eid AS EmployeeId, e.ename AS EmployeeName, d.dname AS DepartmentName " +
+                 "FROM Employees e " +
+                 "LEFT JOIN Departments d ON e.did = d.did";
+
+    try (PreparedStatement stm = connection.prepareStatement(sql);
+        
+         ResultSet rs = stm.executeQuery()) {
+
+        while (rs.next()) {
+            Employee e = new Employee();
+                e.setId(rs.getInt("eid"));
+                e.setName(rs.getString("ename"));           
+                e.setDname(rs.getString("dname"));
+            employees.add(e);
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+    return employees;
+}
+    
+    
+
 
 
     @Override

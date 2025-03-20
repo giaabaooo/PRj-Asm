@@ -48,26 +48,29 @@ public class LoginController extends HttpServlet {
 
     // Duyệt qua danh sách role để xác định role của user
     for (Role r : rid) {
-        if ("team leader".equalsIgnoreCase(r.getName())) {
-            role = "admin"; // Ánh xạ role "boss" thành "admin"
-            break;
-        } else if ("staff".equalsIgnoreCase(r.getName())) {
-            role = "user"; // Ánh xạ role "staff" thành "user"
-            break;
-        }
+    if ("team leader".equalsIgnoreCase(r.getName())) {
+        role = "admin"; // Ánh xạ role "team leader" thành "admin"
+        break;
+    } else if ("staff".equalsIgnoreCase(r.getName())) {
+        role = "user"; // Ánh xạ role "staff" thành "user"
+        break;
+    } else if ("boss".equalsIgnoreCase(r.getName())) {
+        role = "boss"; // Ánh xạ role "boss"
+        break;
     }
-
-    // Phân chia role
-    if ("admin".equalsIgnoreCase(role)) {
-        resp.sendRedirect("admin/welcomeAdmin"); // Trang cho admin
-    } else if ("user".equalsIgnoreCase(role)) {
-        resp.sendRedirect("user/welcome"); // Trang cho user
-    } else {
-        resp.getWriter().println("Role not recognized!"); // Trường hợp role không hợp lệ
-    }
-} else {
-    resp.getWriter().println("Login failed!"); // Sai username hoặc password
 }
+
+// Phân chia role
+if ("admin".equalsIgnoreCase(role)) {
+    resp.sendRedirect("admin/welcomeAdmin"); // Trang cho admin
+} else if ("user".equalsIgnoreCase(role)) {
+    resp.sendRedirect("user/welcome"); // Trang cho user
+} else if ("boss".equalsIgnoreCase(role)) {
+    resp.sendRedirect("boss/welcomeBoss"); // Trang cho boss
+} else {
+    resp.getWriter().println("Role not recognized!"); // Trường hợp role không hợp lệ
+}
+    }
     }
 
     @Override
