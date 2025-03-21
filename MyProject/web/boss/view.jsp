@@ -44,10 +44,9 @@
             <ul>
                 <li><a href="welcomeBoss">Welcome</a></li>
                 <li><a href="dashboard">Dashboard</a></li>
-                <li><a href="employee">Employees</a></li>               
-                <li><a href="historyRequest">Leave Management</a></li>
-                <li><a href="#">Change Password</a></li>
-                <li><a href="logout">Sign Out</a></li>
+                <li><a href="employee">Employees</a></li>                
+                <li><a href="historyRequest">Leave Management</a></li>               
+                <li><a href="<c:url value='/admin/logout'/>" >Sign Out</a></li>
             </ul>
         </div>
         <!-- Content -->

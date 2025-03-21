@@ -158,68 +158,25 @@
                 <li><a href="welcomeBoss">Welcome</a></li>
                 <li><a href="dashboard">Dashboard</a></li>
                 <li><a href="employee">Employees</a></li>                
-                <li><a href="historyRequest">Leave Management</a></li>
-                <li><a href="#">Change Password</a></li>
+                <li><a href="historyRequest">Leave Management</a></li>               
                 <li><a href="<c:url value='/admin/logout'/>" >Sign Out</a></li>
             </ul>
         </div>
-        <div class="content">
-            <div class="dashboard">
-                <div class="card">
-                    <h3>${totalEmployees}</h3>
-                    <p>Total Employees in <c:out value="${sessionScope.user.dept.name}" /></p>
-                </div>
-                <div class="card" style="background-color: #007bff; color: white;">
-                    <h3>${totalRequests}</h3>
-                    <p>Total Requests in <c:out value="${sessionScope.user.dept.name}" /></p>
-                </div>
+       <div class="content">
+            <div class="card">
+                <table>
+                   <tr>
+                <th>Nhân sự</th>
+                <!-- Duyệt qua danh sách ngày tháng -->
+                <c:forEach var="date" items="${dates}">
+                    <th>${date}</th>
+                </c:forEach>
+            </tr> 
+                </table>
+                
 
+                
             </div>
-            <h2>Latest Leave Applications</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Id</th>
-                        <th>Employee Name</th>
-                        <th>Title</th>
-                        <th>Posting Date</th>
-                        <th>Status</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <c:forEach items="${requestScope.leaves}" var="l" varStatus="status" >
-                        <tr>
-                            <td><c:out value="${status.index + 1}"/></td>
-                            <td><c:out value="${l.createdby.displayname}"/></td>
-                            <td><c:out value="${l.title}"/></td>
-                            <td><c:out value="${l.createddate}"/></td>
-                            <td>
-                                <c:choose>
-                                    <c:when test="${l.status == 0}">
-                                        Waiting for Approval
-                                    </c:when>
-                                    <c:when test="${l.status == 1}">
-                                        Not Approved
-                                    </c:when>
-                                    <c:when test="${l.status == 2}">
-                                        Approved
-                                    </c:when>
-                                    <c:otherwise>
-                                        Unknown Status
-                                    </c:otherwise>
-                                </c:choose>
-                            </td>
-                            <td><a href="/MyProject/admin/viewDetail?action=viewDetail&rid=${l.id}" class="btn btn-primary">View Details</a></td>
-                        </tr>
-                    </c:forEach>
-                    <c:if test="${empty leaves}">
-                        <tr>
-                            <td colspan="6" style="text-align: center;">No leave requests found.</td>
-                        </tr>
-                    </c:if>
-                </tbody>
-            </table>
         </div>
     </body>
 </html>

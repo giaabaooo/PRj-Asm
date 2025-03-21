@@ -20,22 +20,21 @@
             <h3>Leader</h3>
             <p class="user-displayname"><strong><c:out value="${sessionScope.user.displayname}" /></strong></p>
             <p class="user-displayname"><c:out value="${sessionScope.user.dept.name}" /></p>
-        <ul>
-            <li><a href="welcomeAdmin">Welcome</a></li>
-            <li><a href="dashboard">Dashboard</a></li>
-            <li><a href="employee">Employees</a></li>
-            <li><a href="adminRequest">Leave Request</a></li>
-            <li><a href="adminManagement">Leave Management</a></li>
-            <li><a href="#">Change Password</a></li>
-            <li><a href="logout">Sign Out</a></li>
-        </ul>
-    </div>
-
-    <div class="content">
-        <div class="card">
-            <h4>Hello,<strong><c:out value="${sessionScope.user.displayname}" /></strong>!</h4>
-            <p>Welcome to the Employee Leave Management System. Please explore your options in the sidebar.</p>
+            <ul>
+                <li><a href="welcomeAdmin">Welcome</a></li>
+                <li><a href="dashboard">Dashboard</a></li>
+                <li><a href="employee">Employees</a></li>
+                <li><a href="adminRequest">Leave Request</a></li>
+                <li><a href="adminManagement">Leave Management</a></li>                
+                <li><a href="logout">Sign Out</a></li>
+            </ul>
         </div>
-    </div>
-</body>
+
+        <div class="content">
+            <div class="card">
+                <h4>Hello,<strong><c:out value="${sessionScope.user.displayname}" /></strong>!</h4>
+                <p>Welcome to the Employee Leave Management System. Please explore your options in the sidebar.</p>
+            </div>
+        </div>
+    </body>
 </html>

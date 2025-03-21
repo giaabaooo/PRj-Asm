@@ -157,11 +157,10 @@
             <ul>
                 <li><a href="welcomeAdmin">Welcome</a></li>
                 <li><a href="dashboard">Dashboard</a></li>
-                <li><a href="employee">Employees</a></li> 
+                <li><a href="employee">Employees</a></li>
                 <li><a href="adminRequest">Leave Request</a></li>
-                <li><a href="adminManagement">Leave Management</a></li>
-                <li><a href="#">Change Password</a></li>
-                <li><a href="<c:url value='/admin/logout'/>" >Sign Out</a></li>
+                <li><a href="adminManagement">Leave Management</a></li>                
+                <li><a href="logout">Sign Out</a></li>
             </ul>
         </div>
         <div class="content">

@@ -141,7 +141,7 @@
             <a href="welcome">My Profiles</a>
             <a href="leaveRequest">Leave Request</a>
             <a href="history">History</a>
-            <a href="changePassword.jsp">Change Password</a>
+           
             <a href="logout" style="color: red;">Sign Out</a>
         </div>
 

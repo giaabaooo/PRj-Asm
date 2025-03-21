@@ -92,10 +92,9 @@
             <ul>
                 <li><a href="welcomeBoss">Welcome</a></li>
                 <li><a href="dashboard">Dashboard</a></li>
-                <li><a href="employee">Employees</a></li>               
-                <li><a href="historyRequest">Leave Management</a></li>
-                <li><a href="#">Change Password</a></li>
-                <li><a href="logout">Sign Out</a></li>
+                <li><a href="employee">Employees</a></li>                
+                <li><a href="historyRequest">Leave Management</a></li>               
+                <li><a href="<c:url value='/admin/logout'/>" >Sign Out</a></li>
             </ul>
         </div>
         <div class="content">
@@ -103,17 +102,17 @@
                 <caption><strong>History</strong></caption>
                 <!-- Search Form -->
                 <form id="search" action="historyRequest" method="GET">
-            <select name="did" onchange="document.getElementById('search').submit();">
-                <option value="-1">All Department</option>
-                <c:forEach items="${requestScope.depts}" var="d">
-                    <option
-                        <c:if test="${d.id eq param.did}">
-                            selected="selected"
-                        </c:if>
-                        value="${d.id}">${d.name}</option>
-                </c:forEach>
-            </select>
-        </form>
+                    <select name="did" onchange="document.getElementById('search').submit();">
+                        <option value="-1">All Department</option>
+                        <c:forEach items="${requestScope.depts}" var="d">
+                            <option
+                                <c:if test="${d.id eq param.did}">
+                                    selected="selected"
+                                </c:if>
+                                value="${d.id}">${d.name}</option>
+                        </c:forEach>
+                    </select>
+                </form>
 
                 <!-- Table -->
                 <table>
@@ -142,7 +141,7 @@
                                 <td><c:out value="${l.createdby.displayname}" /></td>
                                 <td><c:out value="${l.createddate}" /></td>
                                 <td>
-                                    <c:out value="${l.status eq 0 ? 'In Progress' : (r.status eq 1 ? 'Rejected' : 'Accepted')}" />
+                                    <c:out value="${l.status eq 0 ? 'In Progress' : (l.status eq 1 ? 'Rejected' : 'Accepted')}" />
                                 </td>
                                 <td><a href="/MyProject/boss/view?action=view&rid=${l.id}" class="btn btn-primary">View</a></td>
                             </tr>
