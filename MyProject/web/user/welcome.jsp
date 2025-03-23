@@ -10,26 +10,33 @@
 <html>
     <head>
         <title>Welcome Page</title>
-        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/user.css">
+        <link href="../css/admin.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
-    <div class="sidebar">
-        <h4>EMPLOYEE LEAVE MANAGEMENT SYSTEM</h4>
-        <p><strong><c:out value="${sessionScope.user.displayname}" /></strong></p>
-        <a href="welcome">Welcome</a>
-        <a href="leaveRequest">Leave Request</a>
-        <a href="history">History</a>
-        
-        <a href="<c:url value='/user/logout'/>" style="color: red;">Sign Out</a>
-    </div>
-
-    <div class="content">
-        <div class="card">
-            <h4>Hello,<strong><c:out value="${sessionScope.user.displayname}" /></strong>!</h4>
-            <p>Welcome to the Employee Leave Management System. Please explore your options in the sidebar.</p>
+        <div class="navbar">
+            <h1>Employee Leave Management System</h1>
         </div>
-    </div>
-</body>
+        <div class="sidebar">       
+            <p class="user-displayname"><strong><c:out value="${sessionScope.user.displayname}" /></strong></p>
+            <p class="user-displayname"><c:out value="${sessionScope.user.dept.name}" /></p>
+            <ul>
+                <li><a href="welcome">Welcome</a></li>
+                <li><a href="leaveRequest">Leave Request</a></li>
+                <li><a href="history">History</a></li>
+                <li><a href="<c:url value='/user/logout'/>" style="color: red;">Sign Out</a></li>
+            </ul>
+
+
+
+        </div>
+
+        <div class="content">
+            <div class="card">
+                <h4>Hello,<strong><c:out value="${sessionScope.user.displayname}" /></strong>!</h4>
+                <p>Welcome to the Employee Leave Management System. Please explore your options in the sidebar.</p>
+            </div>
+        </div>
+    </body>
 
 </html>
 

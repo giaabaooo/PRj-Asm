@@ -6,52 +6,11 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Leave Management</title>
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+        <link href="../css/adminRequest.css" rel="stylesheet" type="text/css"/>
         <style>
-            body {
-                background-color: #f5f5f5;
-                font-family: Roboto, sans-serif;
-                margin: 0;
-                padding: 0;
-                display: flex;
-                height: 100vh;
-            }
+           
 
-            .sidebar {
-                background-color: #343a40;
-                color: #fff;
-                width: 250px;
-                padding: 20px;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                height: 100vh;
-                position: fixed;
-                overflow-y: auto;
-            }
-
-            .sidebar h4 {
-                margin-bottom: 20px;
-                font-size: 18px;
-                text-align: center;
-            }
-
-            .sidebar a {
-                display: block;
-                width: 100%;
-                padding: 10px 15px;
-                color: #ddd;
-                text-decoration: none;
-                border-radius: 5px;
-                margin-bottom: 10px;
-                text-align: center;
-                font-size: 14px;
-            }
-
-            .sidebar a:hover {
-                background-color: #495057;
-                color: #fff;
-            }
-
+            
             .content {
                 margin-left: 250px;
                 width: calc(100% - 250px);
@@ -105,15 +64,21 @@
         </style>
     </head>
     <body>
-        <!-- Sidebar -->
-        <div class="sidebar">
-            <h4>EMPLOYEE LEAVE MANAGEMENT SYSTEM</h4>
-            <p><strong><c:out value="${sessionScope.user.displayname}" /></strong></p>
-            <a href="welcome">My Profiles</a>
-            <a href="leaveRequest">Leave Request</a>
-            <a href="history">History</a>
-           
-            <a href="logout" style="color: red;">Sign Out</a>
+        <div class="navbar">
+            <h1>Employee Leave Management System</h1>
+        </div>
+        <div class="sidebar">       
+            <p class="user-displayname"><strong><c:out value="${sessionScope.user.displayname}" /></strong></p>
+            <p class="user-displayname"><c:out value="${sessionScope.user.dept.name}" /></p>
+            <ul>
+                <li><a href="welcome">Welcome</a></li>
+                <li><a href="leaveRequest">Leave Request</a></li>
+                <li><a href="history">History</a></li>
+                <li><a href="<c:url value='/user/logout'/>" style="color: red;">Sign Out</a></li>
+            </ul>
+
+
+
         </div>
 
         <!-- Content -->

@@ -6,142 +6,25 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Leave Request</title>
-        <style>
-            body {
-                background-color: #f5f5f5;
-                font-family: Arial, sans-serif;
-                margin: 0;
-                padding: 0;
-                display: flex;
-                height: 100vh;
-            }
-
-            .sidebar {
-                background-color: #343a40;
-                color: #fff;
-                width: 250px; /* Đảm bảo sidebar có chiều rộng cố định */
-                padding: 20px;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                height: 100vh;
-                position: fixed;
-                overflow-y: auto;
-            }
-
-            .sidebar h4 {
-                margin-bottom: 20px;
-                font-size: 18px;
-                text-align: center;
-            }
-
-            .sidebar p {
-                margin-bottom: 20px;
-                text-align: center;
-                width: 100%;
-            }
-
-            .sidebar a {
-                display: block;
-                width: 100%;
-                padding: 10px 15px;
-                color: #ddd;
-                text-decoration: none;
-                border-radius: 5px;
-                margin-bottom: 10px;
-                text-align: center;
-                font-size: 14px;
-            }
-
-            .sidebar a:hover {
-                background-color: #495057;
-                color: #fff;
-            }
-
-            .content {
-                margin-left: 250px; /* Dành không gian cho sidebar */
-                width: calc(100% - 250px);
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                height: 100vh; /* Chiều cao nội dung đầy màn hình */
-                background-color: #f8f9fa;
-            }
-
-            .card {
-                background-color: #fff;
-                border-radius: 8px;
-                box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-                padding: 20px;
-                width: 100%;
-                max-width: 600px;
-            }
-
-            .card h4 {
-                margin-bottom: 20px;
-                text-align: center;
-            }
-
-            .form-label {
-                font-size: 14px;
-                margin-bottom: 8px;
-                color: #555;
-            }
-
-            .form-control {
-                width: 100%;
-                padding: 10px;
-                font-size: 14px;
-                border: 1px solid #ddd;
-                border-radius: 5px;
-                margin-bottom: 15px;
-            }
-
-            .form-control:focus {
-                border-color: #007bff;
-                box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
-            }
-
-            .btn-submit {
-                background-color: #007bff;
-                color: #fff;
-                border: none;
-                padding: 10px 15px;
-                border-radius: 5px;
-                cursor: pointer;
-                font-size: 16px;
-                display: block;
-                margin: 0 auto;
-            }
-
-            .btn-submit:hover {
-                background-color: #0056b3;
-            }
-
-            @media (max-width: 768px) {
-                .sidebar {
-                    width: 200px;
-                }
-
-                .content {
-                    margin-left: 200px;
-                }
-
-                .card {
-                    padding: 15px;
-                }
-            }
-        </style>
+        <link href="../css/adminRequest.css" rel="stylesheet" type="text/css"/>
+        
     </head>
     <body>
-        <div class="sidebar">
-            <h4>EMPLOYEE LEAVE MANAGEMENT SYSTEM</h4>
-            <p <strong><c:out value="${sessionScope.user.displayname}" /></strong></p>
-            <a href="welcome">My Profiles</a>
-            <a href="leaveRequest">Leave Request</a>
-            <a href="history">History</a>
-            
-            <a href="logout" style="color: red;">Sign Out</a>
+        <div class="navbar">
+            <h1>Employee Leave Management System</h1>
+        </div>
+        <div class="sidebar">       
+            <p class="user-displayname"><strong><c:out value="${sessionScope.user.displayname}" /></strong></p>
+            <p class="user-displayname"><c:out value="${sessionScope.user.dept.name}" /></p>
+            <ul>
+                <li><a href="welcome">Welcome</a></li>
+                <li><a href="leaveRequest">Leave Request</a></li>
+                <li><a href="history">History</a></li>
+                <li><a href="<c:url value='/user/logout'/>" style="color: red;">Sign Out</a></li>
+            </ul>
+
+
+
         </div>
 
         <div class="content">

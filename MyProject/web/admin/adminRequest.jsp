@@ -5,11 +5,13 @@
 --%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="mytag" uri="http://example.com/customtags" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <title>Leave Request</title>
+        <!-- Sử dụng Custom Tag để tạo đường dẫn CSS -->
         <link href="../css/adminRequest.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
