@@ -53,6 +53,7 @@
         <servlet-class>controller.boss.AgendaController</servlet-class>
     </servlet>
    
+
     <servlet-mapping>
         <servlet-name>EmployeeController</servlet-name>
         <url-pattern>/admin/employee</url-pattern>
@@ -109,7 +110,7 @@
         <servlet-name>AgendaController</servlet-name>
         <url-pattern>/boss/dashboard</url-pattern>
     </servlet-mapping>
-  
+   
     <welcome-file-list>
         <welcome-file>redirect.jsp</welcome-file>
     </welcome-file-list>
@@ -171,5 +172,4 @@
         <taglib-uri>http://example.com/url-resolver</taglib-uri>
         <taglib-location>/WEB-INF/tlds/url-resolver.tld</taglib-location>
     </taglib>-->
-   
 </web-app>
